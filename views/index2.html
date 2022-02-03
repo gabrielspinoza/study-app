@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <h1>Hello!</h1>
+    <!-- Insert using Post -->
+    <form action="/newdeck" method="POST">  
+        Deck Name: <input type="text" name="d_name">  <br>
+        <!-- : <input type="text" name="d_total_cards">     <br> -->
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- Retrive using get -->
+    <textarea name="textdemo" id="textdemo" cols="30" rows="10"></textarea>
+    <button id="button" type="button">Click Me!</button>
+
+    <h1>Upload Image</h1>
+ 
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" accept="image/*" name="photo" >
+        <input type="submit" value="upload">
+    </form>
+    
+</body>
+
+<script>
+    // https://raw.githubusercontent.com/wilsonestelle85/wilsonestelle85.github.io/main/pets1.json
+
+    // make ajax get request from database
+    $("button").click(function(){
+        $.ajax({url: "/getdeck/decks",type: "GET",dataType: 'json', success: function(rows) {
+            // console.log("My data" + JSON.stringify(req.body));
+            console.log(rows);
+            console.log(JSON.stringify(rows));
+            //$("#textdemo").html(result);
+        }});
+    });
+    
+</script>
+
+<!-- <script>
+    $(document).ready(function() {
+    function getCountryList(p1, p2) {
+        var country_id = this.value;
+        $("#country-dropdown").html('');
+        $.ajax({
+            url: "http://localhost:3000/countries-list",
+            type: "GET",
+            dataType: 'json',
+            success: function(result) {
+                $('#country-dropdown').html('<option value="">Select Country</option>');
+                $.each(result.countries, function(key, value) {
+                    $("#country-dropdown").append('<option value="' + value.id + '">' + value.name + '</option>');
+                });
+                $('#city-dropdown').html('<option value="">Select Country First</option>');
+            }
+        });
+    }
+    $('#country-dropdown').on('change', function() {
+        var country_id = this.value;
+        $("#state-dropdown").html('');
+        $.ajax({
+            url: "http://localhost:3000/get-states-by-country",
+            type: "POST",
+            data: {
+                name: 'country',
+                country_id: country_id,
+            },
+            dataType: 'json',
+            success: function(result) {
+                $('#state-dropdown').html('<option value="">Select State</option>');
+                $.each(result.states, function(key, value) {
+                    $("#state-dropdown").append('<option value="' + value.id + '">' + value.name + '</option>');
+                });
+                $('#city-dropdown').html('<option value="">Select State First</option>');
+            }
+        });
+    });
+    getCountryList();
+});
+</script> -->
+</html>
