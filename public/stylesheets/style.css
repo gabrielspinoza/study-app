@@ -38,6 +38,9 @@ input{
     border: 1px solid;
     width: 100%;
 }
+tr, td, th{
+    width: 50%;
+}
 
 .mdlWin{
     position: absolute;
