@@ -7,7 +7,7 @@ const upload = multer({dest: __dirname + '/uploads/images'});
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index.html', { title: 'Express' });
 });
 
 router.get('/users', function(req, res, next) {
