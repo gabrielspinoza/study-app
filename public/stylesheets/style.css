@@ -9,6 +9,7 @@ a {
 
 body{
     font-family: 'Montserrat', sans-serif;
+    background-color: #d9b382;
 }
 
 h1{
@@ -24,9 +25,10 @@ input{
     width: 100%;
     min-width: 200px;
     border-radius: 10px;
-    -webkit-box-shadow: -1px 8px 15px 0px rgba(0,0,255,0.5);
-    -moz-box-shadow: -1px 8px 15px 0px rgba(0,0,255,0.5);
-    box-shadow: -1px 8px 15px 0px rgba(0,0,255,0.5);
+    background-color: white;
+    -webkit-box-shadow: -1px 8px 15px 0px rgba(181,179,92,1);
+    -moz-box-shadow: -1px 8px 15px 0px rgba(181,179,92,1);
+    box-shadow: -1px 8px 15px 0px rgba(181,179,92,1);
     text-align: center;
     margin: 2%;
     padding: 5.5%;
@@ -49,14 +51,12 @@ input{
     pointer-events: none;
 }
 
-.mdlWin{}
-
 .mdlWin:target{
     opacity: 1;
     pointer-events: all;
 }
 
-.quizWindow, .makeQuizWin{
+.quizWindow, .makeDeck{
     padding: 40px;
     width: 55%;
     min-width: 200px;
@@ -67,7 +67,7 @@ input{
     box-shadow: -1px 8px 15px 0px rgba(0,0,255,0.5);
     text-align: center;
     position: relative;
-    top: 30%;
+    top: 20%;
     left: 22.5%;
     /* transform: translate(-50%, -50%); */
 }
@@ -82,4 +82,14 @@ input{
 
 .main{
     margin-top: 100px;
+}
+
+#deckCard{
+    /* animation: rotate 1s  2s; */
+}
+
+@keyframes rotate {
+    0%{transform: rotateY(360deg);}
+    /* 50%{transform: rotateY(180deg);}
+    100%{transform: rotateY(360deg);} */
 }

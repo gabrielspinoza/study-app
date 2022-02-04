@@ -6,19 +6,14 @@
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
 
-<<<<<<< HEAD:index.html
-    <link rel="stylesheet" href="style.css">
-
-=======
-    <link rel="stylesheet" href="stylesheets/style.css">
->>>>>>> 1ed631bd2335d96ca6730f79db08a6223b312cd6:views/index.html
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
     <title>Let's Study</title>
 </head>
 
 <body onload="setupQuiz()">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
-            <img src="logo.png" width="30" height="30" class="d-inline-block align-top m-1" alt="">
+            <img src="../logo.png" width="30" height="30" class="d-inline-block align-top m-1" alt="">
             Let's Study
         </a>
 
@@ -51,7 +46,7 @@
                 <div class="box">
                     <table class="QuizHistory">
 
-                        <h2>My Quizzes</h2>
+                        <h2>My Decks</h2>
 
                         <tr>
                             <th>Quiz Name</th>
@@ -68,11 +63,11 @@
             </div>
 
             <div class="col-6">
-                <div class="box">
-                    <p>Best score: <span id="best"></span></p>
-                    <p>Recent score: <span id="best"></span></p>
-                    <a class="btn btn-primary" href="">Make New Quiz</a>
-                </div>
+                <form class="box" action="" method="GET">
+                    <h4>Make New Deck <br>or<br> Try One Of Ours</h4>
+                    <a id="button" type="submit" value="Make New Deck" class="btn  btn-block" style="background-color: rgb(181, 179, 92);" href="#makeDeckWin">Make New Deck</a>
+                    <input id="button" type="submit" value="Random Deck" class="btn  btn-block" style="background-color: rgb(181, 179, 92);" onclick="">   
+                </form>
             </div>
 
         </div>
@@ -81,37 +76,37 @@
     <!-- Take Quiz window  -->
     <div class="mdlWin" id="quizWin">
 
-        <div class="quizWindow">
-            <h1 id="questionNo">Quiz</h1>
-            <p id="question">Questions</p>
-            <input id="text-field" type="text" class="form-control">
-            <input id="button" type="submit" value="Submit" class="btn btn-primary btn-block" onclick="submitAns()">
+        <form class="quizWindow">
             <a href="index.html" class="closeMdl">
-                <img class="img-fluid" src="close.png" alt="">
+                <img class="img-fluid" src="../close.png" alt="">
             </a>
-        </div>
+
+            <div class="card" id="deckCard" style="margin-bottom: 5%;">
+                <img src="../wojak2.jpeg" alt="">
+                <h1 id="questionNo"></h1>
+                <p id="question"></p>
+            </div>
+            
+            <input id="text-field" type="text" class="form-control w-50" style="text-align: center; display: block; margin: auto;">
+            
+            <input id="button" type="submit" value="Submit" class="btn  btn-block" style="background-color: rgb(181, 179, 92);" onclick="submitAns()">
+        </form>
 
     </div>
 
-<<<<<<< HEAD:index.html
     <!-- Make Quiz window  -->
-    <div class="mdlWin" style="display: none;">
+    <div class="mdlWin" id="makeDeckWin">
 
-        <div class="makeQuizWin">
-            <h1 id="questionNo">Quiz</h1>
-            <p id="question">Questions</p>
-            <input id="text-field" type="text" class="form-control">
-            <input id="button" type="submit" value="Submit" class="btn btn-primary btn-block" onclick="submitAns()">
+        <form class="makeDeck" action="/newdeck" method="POST">
             <a href="index.html" class="closeMdl">
-                <img class="img-fluid" src="close.png" alt="">
+                <img class="img-fluid" src="../close.png" alt="">
             </a>
-        </div>
+            Deck Name: <input type="text" name="d_name"> <br>
+            <input type="submit" value="Submit">
+        </form>
 
     </div>
 
-    <script src="script.js"></script>
-=======
-    <script src="javascripts/script.js"></script>
->>>>>>> 1ed631bd2335d96ca6730f79db08a6223b312cd6:views/index.html
+    <script src="../public/javascripts/script.js"></script>
 </body>
 </html>

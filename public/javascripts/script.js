@@ -1,5 +1,7 @@
 const questions = [["What is your first name?", "John"], ["Last name?", "Doe"], ["What is funnier than 24?", "25"]];
-var question = document.getElementById("question"),
+
+
+let question = document.getElementById("question"),
     questionCount = document.getElementById("questionNo"),
     textField = document.getElementById("text-field"),
     submitButton = document.getElementById("button"),
@@ -37,3 +39,5 @@ textField.addEventListener('keypress', function(e){
       submitAns()
     }
 });
+
+
