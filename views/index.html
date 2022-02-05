@@ -39,17 +39,17 @@
         </div>
     </nav>
 
+    <!-- Main Container -->
     <div class="container main">
+
         <div class="row h-100 justify-content-center m-lg-3 myrow">
-        
+            
+            <!-- Deck History -->
             <div class="col-6">
                 <div class="box">
                     <table class="table table-hover QuizHistory" id="deckHistory">
 
                         <h2>My Decks</h2>
-
-                        <!-- <button id="deletedeck" type="button">Delete</button>
-                        <button id="editdeck" type="button">Edit</button> -->
 
                         <thead>
                             <div class="row justify-content-between mb-3">
@@ -144,7 +144,7 @@
                 <div class="modal-body">
                     <form class="quizWindow">
                         <div class="card" id="deckCard" style="margin-bottom: 5%;">
-                            <img src="images/wojak2.jpeg" alt="" id="cardImg">
+                            <img src="" alt="" id="cardImg">
                             <h1 id="questionNo"></h1>
                             <p id="question"></p>
                         </div>
@@ -157,23 +157,11 @@
             </div>
         </div>
 
-
-
     </div>
 
-    <!-- Make Quiz window  -->
-    <!-- <div class="mdlWin" id="makeDeckWin">
+    <!-- MODALS -->
 
-        <form class="makeDeck" action="/newdeck" method="POST">
-            <a href="index.html" class="closeMdl">
-                <img class="img-fluid" src="images/close.png" alt="">
-            </a>
-            Deck Name: <input type="text" name="d_name"> <br>
-            <input type="submit" value="Submit">
-        </form>
-
-    </div> -->
-
+     <!-- Modal for new deck -->
     <div class="modal fade" id="makeDeckWin" tabindex="-1" aria-labelledby="newDeckModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -204,17 +192,6 @@
         </div>
       </div>
 
-    <!-- ADDED HTML -->
-
-    <br>
-    <br>
-    <br>
-    <br>
-
-    
-
-
-  <!-- Modal for new deck -->
 
   <!-- Modal for new card-->
   <div class="modal fade" id="newCardModal" tabindex="-1" aria-labelledby="newCardModalLabel" aria-hidden="true">
@@ -224,12 +201,6 @@
           <h5 class="modal-title" id="newCardModalLabel">Add cards to a deck</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-
-        <!-- <h1>Upload Image</h1>
-        <form action="/upload" method="post" enctype="multipart/form-data">
-            <input type="file" accept="image/*" name="photo" >
-            <input type="submit" value="upload">
-        </form> -->
 
         <div class="modal-body">
             <form id="newcard" action="/newcard" method="POST">

@@ -6,6 +6,7 @@ var c_question;
 var c_answer;
 let cardNo = 1;
 let container = [];
+let contSize;
 
 let question = document.getElementById("question"),
     questionCount = document.getElementById("questionNo"),
@@ -13,17 +14,18 @@ let question = document.getElementById("question"),
     submitButton = document.getElementById("button"),
     currentCard= document.getElementById('deckCard'),
     cardImg = document.getElementById('cardImg'),
-    questionNo = 1,
     score = 0;
 
 
 function getDeckCards(){
     let questions = container;
+    let size = contSize;
     $.ajax({'async': false ,url:`/getdeckcards/${d_name}`,type: "GET",dataType: 'json', success:function(rows) {
         results = rows.cards.rows;
         for(x = 0; x < results.length; x++){
             questions.push(results[x])
         }
+        size = container.length;
     }});
     // console.log(container);
     return questions;
@@ -32,42 +34,45 @@ function getDeckCards(){
 
 function setupQuiz(){
     container = getDeckCards();
+    const Size = container.length;
+    contSize = Size;
     console.log(container);
     console.log(container.length);
 
     $('#cardstable').find('tbody').html('');
 
+    textField.style.display = '';
+    submitButton.style.display = '';
+
     if(container.length != 0){
-        question.innerHTML = container[cardNo - 1].question;
-        questionCount.innerHTML = "Question " + questionNo;
-        cardImg.src = `${container[cardNo - 1].img_path}`;
+        question.innerHTML = container[0].question;
+        questionCount.innerHTML = "Question " + cardNo;
+        cardImg.src = `${container[0].img_path}`;
         textField.value = '';  
     }else{
         questionCount.innerHTML = "You're done!";
-        question.innerHTML = "Your score is: " + score + "/" + container.length;
-        textField.remove();
-        submitButton.remove();
+        question.innerHTML = "Your score is: " + score + "/" + contSize;
+        textField.style.display = 'none';
+        submitButton.style.display = 'none';
     }
 }
 
 function nextCard(){
-    $.ajax({url:`/getdeckcards/${d_name}`,type: "GET",dataType: 'json', success:function(rows) {
-        var results = rows.cards.rows;
+    container.shift()
+    if(container.length != 0){
+        currentCard.classList.add('myCard');
+        question.innerHTML = results[0].question;
+        questionCount.innerHTML = "Question " + cardNo;
+        cardImg.src = `${container[0].img_path}`;
+        textField.value = '';  
+    }else{
+        questionCount.innerHTML = "You're done!";
+        question.innerHTML = "Your score is: " + score + "/" + contSize;
+        textField.style.display = 'none';
+        submitButton.style.display = 'none';
+        cardNo = 0;
+    }
 
-        if(results.length > cardNo - 1){
-            currentCard.classList.add('myCard');
-            question.innerHTML = results[cardNo - 1].question;
-            questionCount.innerHTML = "Question " + cardNo;
-            cardImg.src = `${container[cardNo - 1].img_path}`;
-            textField.value = '';  
-        }else{
-            questionCount.innerHTML = "You're done!";
-            question.innerHTML = "Your score is: " + score + "/" + results.length;
-            textField.remove();
-            submitButton.remove();
-            cardNo = 0;
-        }
-    }});
 }
 
 function submitAns(){
@@ -79,14 +84,9 @@ function submitAns(){
 }
 
 function checkAns(ans){
-    var tmpScore = score;
-    $.ajax({'async': false ,url:`/getdeckcards/${d_name}`,type: "GET",dataType: 'json', success:function(rows) {
-        var results = rows.cards.rows;
-        if(ans === results[cardNo - 1].answer){
-            tmpScore+=1;
-        }
-    }});
-    return tmpScore;
+    if(ans === container[0].answer){
+        score = score + 1;
+    }
 }
 
 
