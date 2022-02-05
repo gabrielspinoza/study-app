@@ -93,10 +93,6 @@ tr, td, th{
     margin-top: 100px;
 }
 
-#deckCard{
-    /* animation: rotate 1s  2s; */
-}
-
 @keyframes rotate {
     0%{transform: rotateY(360deg);}
     /* 50%{transform: rotateY(180deg);}
