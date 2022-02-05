@@ -4,6 +4,7 @@ var selectedCardId;
 var d_name;
 var c_question;
 let cardNo = 1;
+let container = [];
 
 let question = document.getElementById("question"),
     questionCount = document.getElementById("questionNo"),
@@ -13,33 +14,31 @@ let question = document.getElementById("question"),
     score = 0;
 
 
-function startQuiz(){
+function getDeckCards(){
+    let questions = container;
     $.ajax({url:`/getdeckcards/${d_name}`,type: "GET",dataType: 'json', success:function(rows) {
-        var results = rows.cards.rows;
-
-        console.log(results);
-        if(cards.length != 0){
-            question.innerHTML = results[cardNo - 1].question;
-            questionCount.innerHTML = "Question " + questionNo;
-            textField.value = '';  
-        }else{
-            questionCount.innerHTML = "You're done!";
-            question.innerHTML = "Your score is: " + score;
-            textField.remove();
-            submitButton.remove();
+        results = rows.cards.rows;
+        for(x = 0; x < results.length; x++){
+            questions.push(results[x])
         }
     }});
+    // console.log(container);
+    return container;
 }
 
 
-function setupQuiz(cards){
-    if(cards.length != 0){
-        question.innerHTML = cards[cardNo - 1].question;
+function setupQuiz(){
+    getDeckCards();
+    console.log(container);
+    console.log(container.length);
+
+    if(container.length != 0){
+        question.innerHTML = container[cardNo - 1].question;
         questionCount.innerHTML = "Question " + questionNo;
         textField.value = '';  
     }else{
         questionCount.innerHTML = "You're done!";
-        question.innerHTML = "Your score is: " + score + "/" + results.length;
+        question.innerHTML = "Your score is: " + score + "/" + container.length;
         textField.remove();
         submitButton.remove();
     }
@@ -64,6 +63,7 @@ function nextCard(){
 }
 
 function submitAns(){
+    console.log(container);
     console.log(textField.value);
     score = checkAns(textField.value);
     cardNo++;
