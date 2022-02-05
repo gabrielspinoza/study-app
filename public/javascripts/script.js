@@ -12,6 +12,7 @@ let question = document.getElementById("question"),
     questionNo = 1,
     score = 0;
 
+
 function startQuiz(){
     $.ajax({url:`/getdeckcards/${d_name}`,type: "GET",dataType: 'json', success:function(rows) {
         var results = rows.cards.rows;
@@ -64,7 +65,7 @@ function checkAns(ans){
     $.ajax({url:`/getdeckcards/${d_name}`,type: "GET",dataType: 'json', success:function(rows) {
         var results = rows.cards.rows;
         if(ans === results[cardNo - 1].answer){
-            score++;
+            score+=1;
         }
     }});
 }
@@ -74,11 +75,6 @@ textField.addEventListener('keypress', function(e){
       submitAns()
     }
 });
-
-function deckHistory(){
-    
-}
-
 
 
 // test json
