@@ -21,16 +21,15 @@ input{
 }
 
 .box{
-    padding: 40px;
+    /* padding: 40px; */
     width: 100%;
-    min-width: 200px;
+    min-width: 330px;
     border-radius: 10px;
     background-color: white;
     -webkit-box-shadow: -1px 8px 15px 0px rgba(181,179,92,1);
     -moz-box-shadow: -1px 8px 15px 0px rgba(181,179,92,1);
     box-shadow: -1px 8px 15px 0px rgba(181,179,92,1);
     text-align: center;
-    margin: 2%;
     padding: 5.5%;
 }
 
@@ -45,7 +44,7 @@ input{
 }
 
 tr, td, th{
-    width: 40%;
+    width: 25%;
 }
 
 .mdlWin{
@@ -84,6 +83,11 @@ tr, td, th{
 
 .main{
     margin-top: 100px;
+    padding: 0%;
+}
+
+.myrow{
+    margin: 0%;
 }
 
 @keyframes rotate {

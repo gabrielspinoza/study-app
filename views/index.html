@@ -40,7 +40,7 @@
     </nav>
 
     <div class="container main">
-        <div class="row h-100 j justify-content-center">
+        <div class="row h-100 justify-content-center m-lg-3 myrow">
         
             <div class="col-6">
                 <div class="box">
@@ -60,7 +60,7 @@
         
                                 <a id="editdeck" type="button" class="btn btn-block option" onclick="">View Cards</a>
         
-                                <a id="startQuiz" type="button" class="btn  btn-block option" data-bs-toggle="modal" data-bs-target="#quizWin" onclick="setupQuiz()" >Take Quiz</a>
+                                <a id="startQuiz" type="button" class="btn  btn-block option" data-bs-toggle="modal" data-bs-target="#quizWin" onclick="setupQuiz(container)">Take Quiz</a>
 
                                 <!-- <a id="startQuiz" type="button" class="btn  btn-block option" href="#quizWin" onclick="startQuiz()" onclick="">Add Card</a>
 
@@ -68,8 +68,8 @@
                             </div>
                             
                             <tr>
+                                <th>Quiz Number</th>
                                 <th>Quiz Name</th>
-                                <th>Edit</th>
                                 <th>Total Cards</th>
                             </tr>
                         </thead>
@@ -83,7 +83,43 @@
                         
                     </table>
                 </div>
+
             </div>
+            
+            <div class="col-5">
+                <div class="box">
+                    <table class="table table-hover QuizHistory" id="cardstable">
+
+                        <h2>Deck Cards</h2>
+
+                        <!-- <button id="deletedeck" type="button">Delete</button>
+                        <button id="editdeck" type="button">Edit</button> -->
+
+                        <thead>
+                            <div class="row justify-content-between mb-3">
+                                <a id="deletecard" type="button" class="btn  btn-block option"  onclick="">Delete</a>
+    
+                                <a id="addnewcard" type="button" class="btn btn-block option" data-bs-toggle="modal" data-bs-target="#newCardModal">New Deck</a>
+
+                            </div>
+                            
+                            <tr>
+                                <th>Card #</th>
+                                <th>image</th>
+                                <th>Question</th>
+                                <th>Answer</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody id="card_rows">
+                            <!-- <tr>
+                                <td><a href="#quizWin">First Quiz</a></td>
+                                <td><a href="">Delete</a></td>
+                            </tr> -->
+                        </tbody>
+                        
+                    </table>
+                </div>
 
             <!-- <div class="col-6">
                 <form class="box" action="" method="GET">
@@ -175,42 +211,7 @@
     <br>
     <br>
 
-    <button id="deletecard" type="button">Delete card</button>
-    <!-- Button trigger modal -->
-    <button id="addnewcard" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newCardModal">
-        add new card
-    </button>
-
-    <table class="table table-hover" id="cardstable">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Image</th>
-                <th>Question</th>
-                <th>Answer</th>
-            </tr>
-        </thead>
-        <tbody id="card_rows">
-            <!-- <tr class="table-row">
-                <th scope="row">1</th>
-                <th>image</th>
-                <th>???</th>
-                <th>answer!!!</th>
-            </tr>
-            <tr class="table-row">
-                <th scope="row">2</th>
-                <th>image</th>
-                <th>???</th>
-                <th>answer!!!</th>
-            </tr>
-            <tr class="table-row">
-                <th scope="row">3</th>
-                <th>image</th>
-                <th>???</th>
-                <th>answer!!!</th>
-            </tr> -->
-        </tbody>
-    </table>
+    
 
 
   <!-- Modal for new deck -->
