@@ -56,29 +56,22 @@ tr, td, th{
     height: 100%;
     background-color: rgba(100,100,100,0.5);
     padding: auto;
-    opacity: 0;
-    pointer-events: none;
+    /* opacity: 0;
+    pointer-events: none; */
 }
 
-.mdlWin:target{
+/* .mdlWin:target{
     opacity: 1;
     pointer-events: all;
-}
+} */
 
 .quizWindow, .makeDeck{
     padding: 40px;
-    width: 55%;
+    width: 100%;
     min-width: 200px;
-    border-radius: 10px;
     background-color: white;
-    -webkit-box-shadow: -1px 8px 15px 0px rgba(0,0,255,0.5);
-    -moz-box-shadow: -1px 8px 15px 0px rgba(0,0,255,0.5);
-    box-shadow: -1px 8px 15px 0px rgba(0,0,255,0.5);
     text-align: center;
     position: relative;
-    top: 20%;
-    left: 22.5%;
-    /* transform: translate(-50%, -50%); */
 }
 
 .closeMdl{
@@ -93,9 +86,6 @@ tr, td, th{
     margin-top: 100px;
 }
 
-#deckCard{
-    /* animation: rotate 1s  2s; */
-}
 
 @keyframes rotate {
     0%{transform: rotateY(360deg);}

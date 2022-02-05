@@ -18,7 +18,16 @@ function startQuiz(){
         var results = rows.cards.rows;
 
         console.log(results);
-        setupQuiz(results);
+        if(cards.length != 0){
+            question.innerHTML = results[cardNo - 1].question;
+            questionCount.innerHTML = "Question " + questionNo;
+            textField.value = '';  
+        }else{
+            questionCount.innerHTML = "You're done!";
+            question.innerHTML = "Your score is: " + score;
+            textField.remove();
+            submitButton.remove();
+        }
     }});
 }
 

@@ -60,11 +60,11 @@
         
                                 <a id="editdeck" type="button" class="btn btn-block option" onclick="">View Cards</a>
         
-                                <a id="startQuiz" type="button" class="btn  btn-block option" href="#quizWin" onclick="startQuiz()" onclick="">Take Quiz</a>
+                                <a id="startQuiz" type="button" class="btn  btn-block option" data-bs-toggle="modal" data-bs-target="#quizWin" onclick="startQuiz()" onclick="">Take Quiz</a>
 
-                                <a id="startQuiz" type="button" class="btn  btn-block option" href="#quizWin" onclick="startQuiz()" onclick="">Add Card</a>
+                                <!-- <a id="startQuiz" type="button" class="btn  btn-block option" href="#quizWin" onclick="startQuiz()" onclick="">Add Card</a>
 
-                                <a id="startQuiz" type="button" class="btn  btn-block option" href="#quizWin" onclick="startQuiz()" onclick="">Edit</a>
+                                <a id="startQuiz" type="button" class="btn  btn-block option" href="#quizWin" onclick="startQuiz()" onclick="">Edit</a> -->
                             </div>
                             
                             <tr>
@@ -97,23 +97,31 @@
     </div>
 
     <!-- Take Quiz window  -->
-    <div class="mdlWin" id="quizWin">
+    <div class=" modal fade mdlWin" id="quizWin" tabindex="-1" aria-labelledby="newCardModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-        <form class="quizWindow">
-            <a href="index.html" class="closeMdl">
-                <img class="img-fluid" src="images/close.png" alt="">
-            </a>
+                <div class="modal-header">
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
 
-            <div class="card" id="deckCard" style="margin-bottom: 5%;">
-                <img src="images/wojak2.jpeg" alt="">
-                <h1 id="questionNo"></h1>
-                <p id="question"></p>
+                <div class="modal-body">
+                    <form class="quizWindow">
+                        <div class="card" id="deckCard" style="margin-bottom: 5%;">
+                            <img src="images/wojak2.jpeg" alt="">
+                            <h1 id="questionNo"></h1>
+                            <p id="question"></p>
+                        </div>
+                        
+                        <input id="text-field" type="text" class="form-control w-50" style="text-align: center; display: block; margin: auto;">
+                        
+                        <input id="button" type="button" value="Submit" class="btn  btn-block" style="background-color: rgb(181, 179, 92);" onclick="submitAns()">
+                    </form>
+                </div>
             </div>
-            
-            <input id="text-field" type="text" class="form-control w-50" style="text-align: center; display: block; margin: auto;">
-            
-            <input id="button" type="button" value="Submit" class="btn  btn-block" style="background-color: rgb(181, 179, 92);" onclick="submitAns()">
-        </form>
+        </div>
+
+
 
     </div>
 
