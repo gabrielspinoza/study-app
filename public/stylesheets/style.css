@@ -90,10 +90,14 @@ tr, td, th{
     margin: 0%;
 }
 
+.myCard{
+    animation: rotate 0.5s linear;
+}
+
 @keyframes rotate {
-    0%{transform: rotateY(360deg);}
-    /* 50%{transform: rotateY(180deg);}
-    100%{transform: rotateY(360deg);} */
+    0%{transform: rotateY(0deg);}
+    /* 50%{transform: rotateY(180deg);} */
+    100%{transform: rotateY(360deg);}
 }
 
 .active{

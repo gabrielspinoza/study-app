@@ -11,6 +11,7 @@ let question = document.getElementById("question"),
     questionCount = document.getElementById("questionNo"),
     textField = document.getElementById("text-field"),
     submitButton = document.getElementById("button"),
+    currentCard= document.getElementById('deckCard'),
     questionNo = 1,
     score = 0;
 
@@ -33,6 +34,8 @@ function setupQuiz(){
     console.log(container);
     console.log(container.length);
 
+    $('#cardstable').find('tbody').html('');
+
     if(container.length != 0){
         question.innerHTML = container[cardNo - 1].question;
         questionCount.innerHTML = "Question " + questionNo;
@@ -50,6 +53,7 @@ function nextCard(){
         var results = rows.cards.rows;
 
         if(results.length > cardNo - 1){
+            currentCard.classList.add('myCard');
             question.innerHTML = results[cardNo - 1].question;
             questionCount.innerHTML = "Question " + cardNo;
             textField.value = '';  
@@ -68,7 +72,7 @@ function submitAns(){
     console.log(textField.value);
     score = checkAns(textField.value);
     cardNo++;
-    nextCard();  
+    nextCard(), currentCard.classList.remove('myCard'); 
 }
 
 function checkAns(ans){
