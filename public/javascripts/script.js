@@ -16,19 +16,19 @@ let question = document.getElementById("question"),
 
 function getDeckCards(){
     let questions = container;
-    $.ajax({url:`/getdeckcards/${d_name}`,type: "GET",dataType: 'json', success:function(rows) {
+    $.ajax({'async': false ,url:`/getdeckcards/${d_name}`,type: "GET",dataType: 'json', success:function(rows) {
         results = rows.cards.rows;
         for(x = 0; x < results.length; x++){
             questions.push(results[x])
         }
     }});
     // console.log(container);
-    return container;
+    return questions;
 }
 
 
 function setupQuiz(){
-    getDeckCards();
+    container = getDeckCards();
     console.log(container);
     console.log(container.length);
 
