@@ -12,6 +12,7 @@ let question = document.getElementById("question"),
     textField = document.getElementById("text-field"),
     submitButton = document.getElementById("button"),
     currentCard= document.getElementById('deckCard'),
+    cardImg = document.getElementById('cardImg'),
     questionNo = 1,
     score = 0;
 
@@ -39,6 +40,7 @@ function setupQuiz(){
     if(container.length != 0){
         question.innerHTML = container[cardNo - 1].question;
         questionCount.innerHTML = "Question " + questionNo;
+        cardImg.src = `${container[cardNo - 1].img_path}`;
         textField.value = '';  
     }else{
         questionCount.innerHTML = "You're done!";
@@ -56,6 +58,7 @@ function nextCard(){
             currentCard.classList.add('myCard');
             question.innerHTML = results[cardNo - 1].question;
             questionCount.innerHTML = "Question " + cardNo;
+            cardImg.src = `${container[cardNo - 1].img_path}`;
             textField.value = '';  
         }else{
             questionCount.innerHTML = "You're done!";
@@ -242,7 +245,7 @@ function loadCardTable() {
                     // first column data
                 tr.append('<td class="py-1 px-2 text-center" scope="row">' + (i++) + '</td>')
                     // second column data
-                tr.append('<td class="py-1 px-2 text-center">' + result[k].img_path + '</td>')
+                tr.append('<td class="py-1 px-2 text-center"> <a href="' + result[k].img_path + '" style="text-decoration: none;">Img Link</a></td>')
                     // third column data
                 tr.append('<td class="py-1 px-2 text-center c_question">' + result[k].question + '</td>')
                 // 4th
