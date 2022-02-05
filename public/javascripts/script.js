@@ -165,13 +165,13 @@ $("#deckHistory").on("click",".table-row", function() {
 
 // every time a row is select get card question & cid
 $("#cardstable").on("click",".table-row", function() {
-    if($('#deckstable').find('tr').hasClass('active')) {
+    if($('#cardstable').find('tr').hasClass('active')) {
         // get question
         c_question = $(".active > .c_question").text();
         // get answer
         c_answer = $(".active > .c_answer").text();
         // get cid
-        selectedCardId =  getCid(selectedDeckId, c_question, a_answer);
+        selectedCardId =  getCid(selectedDeckId, c_question, c_answer);
     }
 });
 
@@ -282,8 +282,10 @@ function getDid(d_name) {
 // gets cid
 // cons: cards with same question on same deck, will return multiple records (should return only one)
 function getCid(did, question, answer) {
+    var q = question.replaceAll(" ", "-").replaceAll("?", "_");
+    var a = answer.replaceAll(" ", "-").replaceAll("?", "_");
     var tmp = null;
-    $.ajax({'async': false, url: `/getcardid/${did}/${question}/${answer}`,type: "GET",dataType: 'json', success: function(rows) {
+    $.ajax({'async': false, url: `/getcardid/${did}/${q}/${a}`,type: "GET",dataType: 'json', success: function(rows) {
         console.log(rows);
         tmp = rows.cards.rows[0].cid;
         console.log("current cid = " + tmp);
@@ -307,7 +309,9 @@ function deleteDeck(did) {
 
 // deletes card
 function deleteCard(did, cid) {
-    $.ajax({url: `/deletecard/${cid}`,type: "GET", success: function(rows) {}});
+    $.ajax({url: `/deletecard/${cid}`,type: "GET", success: function(rows) {
+        console.log(cid+"!!!!!!");
+    }});
     $.ajax({url: `/decrementdeck/${did}`,type: "GET", success: function(rows) {
         // after ajax is complete
     }});
