@@ -39,7 +39,7 @@ function setupQuiz(cards){
         textField.value = '';  
     }else{
         questionCount.innerHTML = "You're done!";
-        question.innerHTML = "Your score is: " + score;
+        question.innerHTML = "Your score is: " + score + "/" + results.length;
         textField.remove();
         submitButton.remove();
     }
@@ -55,7 +55,7 @@ function nextCard(){
             textField.value = '';  
         }else{
             questionCount.innerHTML = "You're done!";
-            question.innerHTML = "Your score is: " + score;
+            question.innerHTML = "Your score is: " + score + "/" + results.length;
             textField.remove();
             submitButton.remove();
             cardNo = 0;
@@ -65,19 +65,22 @@ function nextCard(){
 
 function submitAns(){
     console.log(textField.value);
-    checkAns(textField.value);
+    score = checkAns(textField.value);
     cardNo++;
     nextCard();  
 }
 
 function checkAns(ans){
-    $.ajax({url:`/getdeckcards/${d_name}`,type: "GET",dataType: 'json', success:function(rows) {
+    var tmpScore = score;
+    $.ajax({'async': false ,url:`/getdeckcards/${d_name}`,type: "GET",dataType: 'json', success:function(rows) {
         var results = rows.cards.rows;
         if(ans === results[cardNo - 1].answer){
-            score+=1;
+            tmpScore+=1;
         }
     }});
+    return tmpScore;
 }
+
 
 textField.addEventListener('keypress', function(e){
     if (e.key === 'Enter') {
