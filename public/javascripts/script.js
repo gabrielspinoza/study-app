@@ -239,13 +239,12 @@ function loadCardTable() {
             var i = 1;
             // looping the returned data
             Object.keys(result).map(k => {
-                console.log(result[k].d_name);
                 // creating new table row element
                 var tr = $('<tr class="table-row">')
                     // first column data
                 tr.append('<td class="py-1 px-2 text-center" scope="row">' + (i++) + '</td>')
                     // second column data
-                tr.append('<td class="py-1 px-2 text-center"> <a href="' + result[k].img_path + '" style="text-decoration: none;">Img Link</a></td>')
+                tr.append('<td class="py-1 px-2 text-center"> <img src="' + result[k].img_path + '" class="img-thumbnail" width="100px" alt="' + result[k].img_path + '"> </td>')
                     // third column data
                 tr.append('<td class="py-1 px-2 text-center c_question">' + result[k].question + '</td>')
                 // 4th
@@ -317,7 +316,6 @@ function deleteDeck(did) {
 // deletes card
 function deleteCard(did, cid) {
     $.ajax({url: `/deletecard/${cid}`,type: "GET", success: function(rows) {
-        console.log(cid+"!!!!!!");
     }});
     $.ajax({url: `/decrementdeck/${did}`,type: "GET", success: function(rows) {
         // after ajax is complete

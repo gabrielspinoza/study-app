@@ -6,7 +6,7 @@ const multer = require('multer');
 const upload = multer({dest: __dirname + '/uploads/images'});
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
 });
 
@@ -38,7 +38,7 @@ router.post('/newdeck', function(req, res) {
 });
 
 // add new card to db
-router.post('/newcard', function(req, res, next) {
+router.post('/newcard', function(req, res) {
   var did = req.body.did;
   var img_path = req.body.img_path;
   var question = req.body.question;
@@ -53,6 +53,7 @@ router.post('/newcard', function(req, res, next) {
       // pool.end();
     }
   );
+  res.redirect('/');
 });
 
 // increment number of cards
