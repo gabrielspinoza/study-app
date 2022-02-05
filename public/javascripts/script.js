@@ -3,6 +3,7 @@ var selectedDeckId;
 var selectedCardId;
 var d_name;
 var c_question;
+var c_answer;
 let cardNo = 1;
 let container = [];
 
@@ -167,8 +168,10 @@ $("#cardstable").on("click",".table-row", function() {
     if($('#deckstable').find('tr').hasClass('active')) {
         // get question
         c_question = $(".active > .c_question").text();
+        // get answer
+        c_answer = $(".active > .c_answer").text();
         // get cid
-        selectedCardId =  getCid(selectedDeckId, c_question);
+        selectedCardId =  getCid(selectedDeckId, c_question, a_answer);
     }
 });
 
@@ -239,7 +242,7 @@ function loadCardTable() {
                     // third column data
                 tr.append('<td class="py-1 px-2 text-center c_question">' + result[k].question + '</td>')
                 // 4th
-                tr.append('<td class="py-1 px-2 text-center">' + result[k].answer + '</td>')
+                tr.append('<td class="py-1 px-2 text-center c_answer">' + result[k].answer + '</td>')
                     // close div
                     tr.append('</tr>')
                 // Append table row item to table body
@@ -278,9 +281,9 @@ function getDid(d_name) {
 
 // gets cid
 // cons: cards with same question on same deck, will return multiple records (should return only one)
-function getCid(did, question) {
+function getCid(did, question, answer) {
     var tmp = null;
-    $.ajax({'async': false, url: `/getcardid/${did}/${question}`,type: "GET",dataType: 'json', success: function(rows) {
+    $.ajax({'async': false, url: `/getcardid/${did}/${question}/${answer}`,type: "GET",dataType: 'json', success: function(rows) {
         console.log(rows);
         tmp = rows.cards.rows[0].cid;
         console.log("current cid = " + tmp);

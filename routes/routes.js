@@ -147,9 +147,9 @@ router.get('/getdeckcards/:id', function(req, res) {
   });
 });
 
-router.get('/getcardid/:did/:q', function(req, res) {
+router.get('/getcardid/:did/:q/:a', function(req, res) {
   console.log(req.params.q.replace("%20"," "));
-  pool.query(`SELECT cid FROM cards where did = ${req.params.did} AND question = '${req.params.q.replace("%20"," ")}'`, (err, rows) => {
+  pool.query(`SELECT cid FROM cards where did = ${req.params.did} AND question = '${req.params.q.replace("%20"," ")}' AND answer = '${req.params.a.replace("%20"," ")}'`, (err, rows) => {
     if (err) {
       res.json({
         msg: 'error'
