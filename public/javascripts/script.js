@@ -1,12 +1,12 @@
 // global variables
-var selectedDeckId;
-var selectedCardId;
-var d_name;
-var c_question;
-var c_answer;
-let cardNo = 1;
-let container = [];
-let contSize;
+let selectedDeckId,
+    selectedCardId,
+    d_name,
+    c_question,
+    c_answer,
+    cardNo = 1,
+    container = [],
+    cardCount;
 
 let question = document.getElementById("question"),
     questionCount = document.getElementById("questionNo"),
@@ -19,13 +19,11 @@ let question = document.getElementById("question"),
 
 function getDeckCards(){
     let questions = container;
-    let size = contSize;
     $.ajax({'async': false ,url:`/getdeckcards/${d_name}`,type: "GET",dataType: 'json', success:function(rows) {
         results = rows.cards.rows;
         for(x = 0; x < results.length; x++){
             questions.push(results[x])
         }
-        size = container.length;
     }});
     // console.log(container);
     return questions;
@@ -34,10 +32,9 @@ function getDeckCards(){
 
 function setupQuiz(){
     container = getDeckCards();
-    const Size = container.length;
-    contSize = Size;
     console.log(container);
     console.log(container.length);
+    cardCount = container.length;
 
     $('#cardstable').find('tbody').html('');
 
@@ -51,7 +48,7 @@ function setupQuiz(){
         textField.value = '';  
     }else{
         questionCount.innerHTML = "You're done!";
-        question.innerHTML = "Your score is: " + score + "/" + contSize;
+        question.innerHTML = "Your score is: " + score + "/" + cardCount;
         textField.style.display = 'none';
         submitButton.style.display = 'none';
     }
@@ -66,11 +63,12 @@ function nextCard(){
         cardImg.src = `${container[0].img_path}`;
         textField.value = '';  
     }else{
+        cardNo = 1;
         questionCount.innerHTML = "You're done!";
-        question.innerHTML = "Your score is: " + score + "/" + contSize;
+        question.innerHTML = "Your score is: " + score + "/" + cardCount;
+        cardImg.style.display = 'none';
         textField.style.display = 'none';
         submitButton.style.display = 'none';
-        cardNo = 0;
     }
 
 }
@@ -78,9 +76,10 @@ function nextCard(){
 function submitAns(){
     console.log(container);
     console.log(textField.value);
-    score = checkAns(textField.value);
+    checkAns(textField.value);
     cardNo++;
-    nextCard(), currentCard.classList.remove('myCard'); 
+    currentCard.classList.remove('myCard');
+    nextCard();
 }
 
 function checkAns(ans){
